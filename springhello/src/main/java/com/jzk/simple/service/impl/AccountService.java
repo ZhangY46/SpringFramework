@@ -15,6 +15,9 @@ public class AccountService implements IAccountService {
 
     private IAccountDao accountDao;
 
+    public void setAccountDao(IAccountDao accountDao) {
+        this.accountDao = accountDao;
+    }
     public void query() {
         accountDao.queryAccount();
     }

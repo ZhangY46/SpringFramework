@@ -3,8 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <bean id="accountDao" class="com.jzk.simple.service.impl.AccountService" >
+    <import resource="daos.xml"></import>
+    <bean id="accountService" class="com.jzk.simple.service.impl.AccountService" >
+        <property name="accountDao" ref="accountDao"></property>
     </bean>
 
 </beans>
