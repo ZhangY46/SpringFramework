@@ -3,9 +3,10 @@ package com.jzk.simple;
 import com.jzk.simple.dao.IAccountDao;
 import com.jzk.simple.service.IAccountService;
 import com.jzk.simple.service.impl.ClientService;
+import com.jzk.simple.until.IMove;
+import com.jzk.simple.until.IPeople;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -74,6 +75,19 @@ public class testAccountDao {
 
         System.out.println(integer.toString());
         System.out.println(string+",length:"+string.length());
+    }
+
+
+    //通过构造函数创建bean对象
+    @Test
+    public void testConstructor(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("constructor.xml");
+        IMove move=applicationContext.getBean("move",IMove.class);
+        move.move();
+        IPeople people=applicationContext.getBean("people",IPeople.class);
+        people.peopleMove();
+
     }
 
 }

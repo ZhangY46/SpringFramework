@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        基于构造函数的依赖注入
+        简单的类型   基本类型和spring、Date之类
+        官方 指的是不确定的类型  存在歧义的
+    -->
+    <bean id="move" class="com.jzk.simple.until.impl.Move">
+        <constructor-arg type="java.lang.String" value="JiangZhikuan"></constructor-arg>
+        <constructor-arg type="java.lang.Integer" value="3"></constructor-arg>
+        <constructor-arg type="int" value="4"></constructor-arg>
+    </bean>
+
+    <!--
+        基于构造函数的依赖注入
+        依赖注入类
+        官方称   不存在潜在的歧义
+    -->
+    <bean id="people" class="com.jzk.simple.until.impl.People">
+        <constructor-arg ref="move"></constructor-arg>
+    </bean>
+
+</beans>
