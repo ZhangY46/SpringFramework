@@ -2,8 +2,10 @@ package com.jzk.simple;
 
 import com.jzk.simple.dao.IAccountDao;
 import com.jzk.simple.service.IAccountService;
+import com.jzk.simple.service.impl.ClientService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -51,6 +53,27 @@ public class testAccountDao {
 
         accountDao.updateAccount();
         accountService.save();
+    }
+
+    //静态方法创建beanFactory
+    @Test
+    public void testStaticFactory(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("staticService.xml");
+        ClientService clientService=applicationContext.getBean("clientService",ClientService.class);
+        clientService.test();
+    }
+
+    //非静态方法创建beanFactory
+    @Test
+    public void testFactory(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("staticService.xml");
+        Integer integer= applicationContext.getBean("createInter",Integer.class);
+        String string=applicationContext.getBean("createString",String.class);
+
+        System.out.println(integer.toString());
+        System.out.println(string+",length:"+string.length());
     }
 
 }
