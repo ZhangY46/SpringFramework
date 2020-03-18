@@ -3,9 +3,17 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+        导入多个文件bean配置文件
+    -->
     <import resource="daos.xml"></import>
     <bean id="accountService" class="com.jzk.simple.service.impl.AccountService" >
+        <!--
+            通过set方法注入
+        -->
         <property name="accountDao" ref="accountDao"></property>
     </bean>
 
+    <!--设置别名-->
+    <alias name="accountService" alias="service"></alias>
 </beans>

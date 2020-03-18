@@ -16,6 +16,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class testAccountDao {
 
+    //配置dao  注入
     @Test
     public void testDao(){
 
@@ -24,11 +25,32 @@ public class testAccountDao {
         accountDao.queryAccount();
     }
 
+    //配置service配置到容器
     @Test
     public void testService(){
         ApplicationContext applicationContext=new ClassPathXmlApplicationContext("services.xml");
         IAccountService accountService=applicationContext.getBean("accountService",IAccountService.class);
         accountService.query();
+    }
+
+    //通过配置别名获取bean
+    @Test
+    public void testAliasService(){
+        ApplicationContext applicationContext=new ClassPathXmlApplicationContext("services.xml");
+        IAccountService service=applicationContext.getBean("service",IAccountService.class);
+        service.delete();
+    }
+
+    //测试加载多个xml bean配置
+    @Test
+    public void test(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("daos.xml","services.xml");
+        IAccountDao accountDao=applicationContext.getBean("accountDao",IAccountDao.class);
+        IAccountService accountService=applicationContext.getBean("accountService",IAccountService.class);
+
+        accountDao.updateAccount();
+        accountService.save();
     }
 
 }
