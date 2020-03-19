@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.concurrent.ThreadPoolExecutor;
+
 /**
  * ClassName:testAccountDao
  * Package:com.jzk.simple
@@ -87,7 +89,25 @@ public class testAccountDao {
         move.move();
         IPeople people=applicationContext.getBean("people",IPeople.class);
         people.peopleMove();
+    }
 
+    //xml配置中p命名空间下的配置使用测试
+    @Test
+    public void testService_P(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("p-Service.xml");
+        IAccountService accountService=
+                applicationContext.getBean("accountService",IAccountService.class);
+        accountService.delete();
+    }
+
+    //xml配置中C命名空间下的配置使用
+    @Test
+    public void testMove_C(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("p-Service.xml");
+        IMove move= applicationContext.getBean("move",IMove.class);
+        move.move();
     }
 
 }

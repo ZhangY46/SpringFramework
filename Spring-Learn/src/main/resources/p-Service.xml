@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="daos.xml"></import>
+
+    <!--
+        p命名空间
+        个人理解property简写
+    -->
+    <bean id="accountService"
+          class="com.jzk.simple.service.impl.AccountService"
+          p:accountDao-ref="accountDao"/>
+
+
+    <!--
+        c命名空间
+        个人理解：替换了construct-org的使用
+    -->
+    <bean id="move" class="com.jzk.simple.until.impl.Move"
+          c:n="JiangZhikuan"
+          c:x="3"
+          c:y="4"></bean>
+
+</beans>
