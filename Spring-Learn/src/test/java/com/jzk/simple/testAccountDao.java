@@ -11,9 +11,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.xml.transform.Source;
-import java.util.concurrent.ThreadPoolExecutor;
-
 /**
  * ClassName:testAccountDao
  * Package:com.jzk.simple
