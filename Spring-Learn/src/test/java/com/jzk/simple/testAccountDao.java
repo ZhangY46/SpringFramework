@@ -1,6 +1,7 @@
 package com.jzk.simple;
 
 import com.jzk.simple.dao.IAccountDao;
+import com.jzk.simple.other.AnnotationIocTest;
 import com.jzk.simple.other.CollectionClass;
 import com.jzk.simple.other.TestAbstractChildClass;
 import com.jzk.simple.service.IAccountService;
@@ -144,5 +145,15 @@ public class testAccountDao {
         TestAbstractChildClass abstractChildClass=
                 applicationContext.getBean("testAbstractChildClass",TestAbstractChildClass.class);
         abstractChildClass.testAbstract();
+    }
+
+    //注解注入
+    @Test
+    public void testAnnotationIOC(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("annotationTest.xml");
+        AnnotationIocTest annotationIocTest=
+                applicationContext.getBean("annotationIocTest",AnnotationIocTest.class);
+        annotationIocTest.testIOC();
     }
 }
