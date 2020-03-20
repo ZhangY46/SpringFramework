@@ -168,4 +168,14 @@ public class testAccountDao {
         annotationIocTest.testIOC();
 
     }
+
+    //测试xml解析properties
+    @Test
+    public void testAnnotationProperties(){
+        ApplicationContext applicationContext=
+                new AnnotationConfigApplicationContext(AppConfig.class);
+        ProperConfig properConfig=applicationContext.getBean(ProperConfig.class);
+        System.out.println(properConfig.toString());
+    }
+
 }
