@@ -1,15 +1,14 @@
 package com.jzk.simple;
 
 import com.jzk.simple.dao.IAccountDao;
-import com.jzk.simple.other.AnnotationIocTest;
-import com.jzk.simple.other.CollectionClass;
-import com.jzk.simple.other.TestAbstractChildClass;
+import com.jzk.simple.other.*;
 import com.jzk.simple.service.IAccountService;
 import com.jzk.simple.service.impl.ClientService;
 import com.jzk.simple.until.IMove;
 import com.jzk.simple.until.IPeople;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.xml.transform.Source;
@@ -155,5 +154,18 @@ public class testAccountDao {
         AnnotationIocTest annotationIocTest=
                 applicationContext.getBean("annotationIocTest",AnnotationIocTest.class);
         annotationIocTest.testIOC();
+    }
+
+    //Java配置注解
+    @Test
+    public void testJavaAnnotation(){
+        ApplicationContext applicationContext=
+                new AnnotationConfigApplicationContext(AppConfigImport.class);
+        AnnotionTest annotionTest=applicationContext.getBean(AnnotionTest.class);
+        AnnotationIocTest annotationIocTest=applicationContext.getBean(AnnotationIocTest.class);
+
+        annotionTest.test();
+        annotationIocTest.testIOC();
+
     }
 }
