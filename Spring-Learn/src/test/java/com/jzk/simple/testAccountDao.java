@@ -2,6 +2,7 @@ package com.jzk.simple;
 
 import com.jzk.simple.dao.IAccountDao;
 import com.jzk.simple.other.CollectionClass;
+import com.jzk.simple.other.TestAbstractChildClass;
 import com.jzk.simple.service.IAccountService;
 import com.jzk.simple.service.impl.ClientService;
 import com.jzk.simple.until.IMove;
@@ -123,5 +124,25 @@ public class testAccountDao {
         System.out.println(collectionClass.getMap());
         System.out.println(collectionClass.getProperties());
         System.out.println(collectionClass.getSet());
+    }
+
+    //测试抽象方法  继承
+    @Test
+    public void testAbstract(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("beanParen.xml");
+        TestAbstractChildClass abstractChildClass=
+                applicationContext.getBean("testAbstractChildClass",TestAbstractChildClass.class);
+        abstractChildClass.testAbstract();
+    }
+
+    //自定义回调接口
+    @Test
+    public void testProcessor(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("beanParen.xml");
+        TestAbstractChildClass abstractChildClass=
+                applicationContext.getBean("testAbstractChildClass",TestAbstractChildClass.class);
+        abstractChildClass.testAbstract();
     }
 }
