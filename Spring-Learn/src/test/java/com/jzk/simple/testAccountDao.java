@@ -1,6 +1,7 @@
 package com.jzk.simple;
 
 import com.jzk.simple.dao.IAccountDao;
+import com.jzk.simple.other.CollectionClass;
 import com.jzk.simple.service.IAccountService;
 import com.jzk.simple.service.impl.ClientService;
 import com.jzk.simple.until.IMove;
@@ -9,6 +10,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.xml.transform.Source;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
@@ -110,4 +112,16 @@ public class testAccountDao {
         move.move();
     }
 
+    //测试集合类注入
+    @Test
+    public void testCollection(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("Conllection.xml");
+        CollectionClass collectionClass=
+                applicationContext.getBean("collectionClass",CollectionClass.class);
+        System.out.println(collectionClass.getList());
+        System.out.println(collectionClass.getMap());
+        System.out.println(collectionClass.getProperties());
+        System.out.println(collectionClass.getSet());
+    }
 }
