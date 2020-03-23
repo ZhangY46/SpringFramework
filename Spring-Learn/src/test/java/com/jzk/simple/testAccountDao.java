@@ -175,4 +175,14 @@ public class testAccountDao {
         System.out.println(properConfig.toString());
     }
 
+    //配置MessageSource
+    @Test
+    public void testMessageSource(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("bean-messageSource.xml");
+        MessageSource_Example messageSourceExample=
+                applicationContext.getBean("example",MessageSource_Example.class);
+        messageSourceExample.execute();
+    }
+
 }
