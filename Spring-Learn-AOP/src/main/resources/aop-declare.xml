@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--
+
+        此配置不正确  后续学习
+
+    -->
+
+    <bean id="defaultUsageTracked"
+          class="com.jzk.simple.service.impl.DefaultUsageTracked"/>
+
+    <bean id="simpleProfiler" class="com.jzk.simple.SimpleProfiler"/>
+
+    <aop:config>
+        <aop:aspect id="simpleProfilerAspect" ref="simpleProfiler">
+            <aop:declare-parents types-matching="com.jzk.simple.service.*+"
+                                 implement-interface="com.jzk.simple.service.UsageTracked"
+                                 default-impl="com.jzk.simple.service.impl.DefaultUsageTracked"/>
+            <aop:before method="profile"
+                        pointcut="execution(* com.jzk.simple.service.impl.DefaultUsageTracked.*(..))"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

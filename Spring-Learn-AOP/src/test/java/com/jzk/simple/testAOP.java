@@ -1,6 +1,7 @@
 package com.jzk.simple;
 
 import com.jzk.simple.service.IFoodService;
+import com.jzk.simple.service.impl.DefaultUsageTracked;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -16,6 +17,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class testAOP {
 
+    //aop切面简单demo
     @Test
     public void testXmlAop(){
         ApplicationContext applicationContext=
@@ -23,6 +25,17 @@ public class testAOP {
         IFoodService foodService=
                 applicationContext.getBean("foodService",IFoodService.class);
         foodService.Save();
+    }
+
+    //后续学习补充
+    @Test
+    public void testAopDeclare(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("aop-declare.xml");
+        DefaultUsageTracked usageTracked=
+                applicationContext.getBean("defaultUsageTracked",DefaultUsageTracked.class);
+
+        usageTracked.SaveUser();
     }
 
 }
