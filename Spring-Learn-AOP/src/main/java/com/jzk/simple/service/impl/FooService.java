@@ -16,9 +16,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class FooService implements IFooService {
 
-    public int add() {
+    public int add(int a,int b) {
         System.out.println("FooService  function : save");
-        return 123;
+        return (a+b);
     }
 
 }

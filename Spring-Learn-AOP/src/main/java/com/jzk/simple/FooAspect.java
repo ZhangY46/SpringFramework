@@ -4,6 +4,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+
 /**
  * ClassName:FooAspect
  * Package:com.jzk.simple
@@ -19,22 +21,22 @@ import org.springframework.stereotype.Component;
 public class FooAspect {
 
     //配置切入点
-    @Pointcut("execution(* com.jzk.simple.service.impl.FooService.*(..))")
+    @Pointcut(value = "execution(* com.jzk.simple.service.impl.FooService.*(..))")
     public void fooService(){
 
     }
 
-  /*
-    //配置前置通知
-    @Before(value = "fooService()")
-    public void before(){
+    /*//配置前置通知
+    @Before(value = "fooService()&&args(a,b)",argNames = "a,b")
+    public void before(int a,int b){
+        System.out.println("a:"+a+"b:"+b);
         System.out.println("fooService  before");
     }
 
     //配置运行通知
     @AfterReturning(value = "fooService()",returning = "sum")
-    public void afterReturning(String sum){
-        System.out.println("fooService afterReturning,sum:"+sum);
+    public void afterReturning(int sum){
+        System.out.println("fooService afterReturning,sum:" + sum);
     }
 
     //配置异常通知
@@ -50,12 +52,12 @@ public class FooAspect {
     }*/
 
     //配置环绕通知
-    @Around("fooService()")
-    public Object around(ProceedingJoinPoint pjp) throws Throwable {
+    @Around(value = "fooService()&&args(a,b)")
+    public Object around(ProceedingJoinPoint pjp,int a,int b) throws Throwable {
         System.out.println("before");
-        System.out.println("afterRetuning");
-        Object retVal=pjp.proceed();
-        System.out.println("after");
+        System.out.println("afterRetuning,a:"+a+"b:"+b);
+        Object retVal=pjp.proceed(new Object[]{a,b});
+        System.out.println("after,sum:"+retVal);
         return retVal;
     }
 }

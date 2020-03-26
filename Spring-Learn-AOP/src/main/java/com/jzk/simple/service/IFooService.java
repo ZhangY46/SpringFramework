@@ -10,6 +10,6 @@ package com.jzk.simple.service;
  */
 public interface IFooService {
 
-    int add();
+    int add(int a,int b);
 
 }

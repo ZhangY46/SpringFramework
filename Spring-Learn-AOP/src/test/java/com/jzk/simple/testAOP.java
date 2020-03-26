@@ -40,13 +40,13 @@ public class testAOP {
         usageTracked.SaveUser();
     }
 
-    //
+    //Java配置使用注解配置AOP
     @Test
     public void testJavaAnnotationAOP(){
         ApplicationContext applicationContext=
                 new AnnotationConfigApplicationContext(AppConfig.class);
         IFooService fooService= applicationContext.getBean("fooService",IFooService.class);
-        fooService.add();
+        fooService.add(1,2);
     }
 
 }
