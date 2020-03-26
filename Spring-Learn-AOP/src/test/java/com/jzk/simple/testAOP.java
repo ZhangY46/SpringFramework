@@ -1,9 +1,11 @@
 package com.jzk.simple;
 
+import com.jzk.simple.service.IFooService;
 import com.jzk.simple.service.IFoodService;
 import com.jzk.simple.service.impl.DefaultUsageTracked;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -36,6 +38,15 @@ public class testAOP {
                 applicationContext.getBean("defaultUsageTracked",DefaultUsageTracked.class);
 
         usageTracked.SaveUser();
+    }
+
+    //
+    @Test
+    public void testJavaAnnotationAOP(){
+        ApplicationContext applicationContext=
+                new AnnotationConfigApplicationContext(AppConfig.class);
+        IFooService fooService= applicationContext.getBean("fooService",IFooService.class);
+        fooService.add();
     }
 
 }
