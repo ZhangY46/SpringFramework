@@ -26,7 +26,7 @@ public class FooAspect {
 
     }
 
-    /*//配置前置通知
+    //配置前置通知
     @Before(value = "fooService()&&args(a,b)",argNames = "a,b")
     public void before(int a,int b){
         System.out.println("a:"+a+"b:"+b);
@@ -49,7 +49,7 @@ public class FooAspect {
     @After("fooService()")
     public void after(){
         System.out.println("fooService after");
-    }*/
+    }
 
     //配置环绕通知
     @Around(value = "fooService()&&args(a,b)")

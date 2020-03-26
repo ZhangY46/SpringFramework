@@ -23,5 +23,34 @@
         </aop:aspect>
     </aop:config>
 
+    <bean id="fooService" class="com.jzk.simple.service.impl.FooService"/>
+
+    <bean id="fooAspect" class="com.jzk.simple.FooAspect"></bean>
+
+    <aop:config>
+        <aop:aspect id="fooServiceAspect" ref="fooAspect" >
+            <aop:pointcut id="fooServicePointcut"
+                          expression="execution(* com.jzk.simple.service.impl.FooService.*(..))&amp;&amp;args(a,b)"/>
+            <!--
+                配置环绕通知
+            -->
+            <!--<aop:around method="around" pointcut-ref="fooServicePointcut"/>-->
+
+            <!--
+            配置运行通知
+            -->
+            <!--<aop:after-returning
+                    method="afterReturning"
+                    pointcut-ref="fooServicePointcut" returning="sum"/>-->
+
+            <!--
+                配置前置通知
+            -->
+           <aop:before method="before" pointcut-ref="fooServicePointcut" arg-names="a,b"/>
+
+        </aop:aspect>
+
+
+    </aop:config>
 
 </beans>

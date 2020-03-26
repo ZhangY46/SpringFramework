@@ -49,4 +49,12 @@ public class testAOP {
         fooService.add(1,2);
     }
 
+    @Test
+    public void testXmlArgsAOP(){
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("aop_plain.xml");
+        IFooService fooService=applicationContext.getBean("fooService",IFooService.class);
+        System.out.println(fooService.add(1,2));
+    }
+
 }
